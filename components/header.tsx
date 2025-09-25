@@ -19,7 +19,7 @@ export function Header({ cartCount = 0, language = "en", onLanguageChange }: Hea
       home: "Home",
       products: "Products",
       cart: "Cart",
-      about: "Elephants",
+      about: "About Elephants",
       reviews: "Reviews",
     },
     ta: {

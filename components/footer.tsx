@@ -15,9 +15,9 @@ export function Footer({ language = "en" }: FooterProps) {
       quickLinks: "Quick Links",
       contact: "Contact Us",
       followUs: "Follow Us",
-      address: "123 Artisan Street, Craft District, Chennai, Tamil Nadu 600001",
-      email: "support@theurbanelephant.com",
-      phone: "+91 98765 43210",
+      address: "MVsv Enterprises, No.1 Elite Homes, Kasinath Garden, Sundakkamuthur, Coimbatore - 641010",
+      email: "mvsv2367@gmail.com",
+      phone: "+91 93811 34997",
       copyright: "© 2025 The Urban Elephant. All rights reserved.",
       links: {
         home: "Home",
@@ -33,9 +33,9 @@ export function Footer({ language = "en" }: FooterProps) {
       quickLinks: "விரைவு இணைப்புகள்",
       contact: "எங்களை தொடர்பு கொள்ளுங்கள்",
       followUs: "எங்களை பின்தொடருங்கள்",
-      address: "123 கைவினைஞர் தெரு, கிராஃப்ட் மாவட்டம், சென்னை, தமிழ்நாடு 600001",
-      email: "support@theurbanelephant.com",
-      phone: "+91 98765 43210",
+      address: "எம்.வி.எஸ்.வி என்டர்ப்ரைசஸ், நம்பர் 1 எலிட் ஹோம்ஸ், காசிநாத் கார்டன், சுந்தக்கமுத்தூர், கோயம்புத்தூர் - 641010",
+      email: "mvsv2367@gmail.com",
+      phone: "+91 93811 34997",
       copyright: "© 2025 தி அர்பன் எலிஃபண்ட். அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.",
       links: {
         home: "முகப்பு",
@@ -52,7 +52,7 @@ export function Footer({ language = "en" }: FooterProps) {
   return (
     <footer className="bg-secondary/20 border-t border-border">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
@@ -113,21 +113,7 @@ export function Footer({ language = "en" }: FooterProps) {
             </div>
           </div>
 
-          {/* Social Media */}
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold">{t.followUs}</h4>
-            <div className="flex space-x-4">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Facebook className="w-6 h-6" />
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Instagram className="w-6 h-6" />
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Twitter className="w-6 h-6" />
-              </a>
-            </div>
-          </div>
+          {/* Social section removed as requested */}
         </div>
 
         {/* Copyright */}

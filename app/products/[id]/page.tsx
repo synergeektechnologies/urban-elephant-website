@@ -6,6 +6,7 @@ import { Header } from "@/components/header"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
+import { Alert, AlertDescription } from "@/components/ui/alert"
 import { getProductById } from "@/lib/products"
 import { useCart } from "@/lib/cart"
 import { ArrowLeft, ShoppingCart, Truck, Shield, Award } from "lucide-react"
@@ -109,8 +110,8 @@ export default function ProductDetailPage() {
   const t = translations[language]
 
   const woodTypeLabel = {
-    en: { mahogany: "Mahogany", rosewood: "Rosewood" },
-    ta: { mahogany: "மஹோகனி", rosewood: "ரோஸ்வுட்" },
+    en: { aakeshya: "Aakeshya", mahogany: "Mahogany" },
+    ta: { aakeshya: "ஆகேஷ்யா", mahogany: "மஹோகனி" },
   }
 
   return (
@@ -161,6 +162,15 @@ export default function ProductDetailPage() {
 
             <div className="text-3xl font-bold text-primary">{formatPrice(product.basePrice)}</div>
 
+            {/* Policy Notice */}
+            <Alert className="bg-secondary/30 border-none">
+              <AlertDescription className="text-sm">
+                {language === "en"
+                  ? "100% payment required. Delivery time: 7 days. No cancellation."
+                  : "100% கட்டணம் அவசியம். டெலிவரி நேரம்: 7 நாட்கள். ரத்து செய்ய இயலாது."}
+              </AlertDescription>
+            </Alert>
+
             {/* Specifications */}
             <Card>
               <CardContent className="p-6">
@@ -178,6 +188,25 @@ export default function ProductDetailPage() {
                     <span className="text-muted-foreground">{t.weight}:</span>
                     <p className="font-medium">{product.weightInKg} kg</p>
                   </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Price Breakdown */}
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold mb-4">{language === "en" ? "Price Breakdown" : "விலை விவரம்"}</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="text-muted-foreground">{language === "en" ? "Item Cost" : "அடிப்படை விலை"}</div>
+                  <div className="text-right font-medium">{formatPrice(product.cost)}</div>
+                  <div className="text-muted-foreground">GST</div>
+                  <div className="text-right font-medium">{formatPrice(product.gst)}</div>
+                  <div className="text-muted-foreground">{language === "en" ? "Packing" : "பேக்கிங்"}</div>
+                  <div className="text-right font-medium">{formatPrice(product.packingCost)}</div>
+                  <div className="text-muted-foreground">{language === "en" ? "Freight" : "கப்பல் கட்டணம்"}</div>
+                  <div className="text-right font-medium">{formatPrice(product.freightCharges)}</div>
+                  <div className="text-muted-foreground font-semibold">{language === "en" ? "Total" : "மொத்தம்"}</div>
+                  <div className="text-right font-bold text-primary">{formatPrice(product.basePrice)}</div>
                 </div>
               </CardContent>
             </Card>
@@ -218,13 +247,6 @@ export default function ProductDetailPage() {
               <CardContent className="p-6">
                 <h3 className="text-lg font-semibold mb-4">{t.features}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="flex items-start space-x-3">
-                    <Truck className="h-5 w-5 text-primary mt-0.5" />
-                    <div>
-                      <p className="font-medium">{t.freeShipping}</p>
-                      <p className="text-sm text-muted-foreground">{t.freeShippingDesc}</p>
-                    </div>
-                  </div>
                   <div className="flex items-start space-x-3">
                     <Award className="h-5 w-5 text-primary mt-0.5" />
                     <div>

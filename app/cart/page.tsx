@@ -6,6 +6,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Badge } from "@/components/ui/badge"
 import { useCart } from "@/lib/cart"
 import { ArrowLeft, Minus, Plus, Trash2, ShoppingBag } from "lucide-react"
@@ -83,19 +84,30 @@ export default function CartPage() {
   }
 
   const subtotal = getTotalPrice()
+  // Aggregate price breakdown across cart
+  const totals = items.reduce(
+    (acc, item) => {
+      acc.cost += item.product.cost * item.quantity
+      acc.gst += item.product.gst * item.quantity
+      acc.packing += item.product.packingCost * item.quantity
+      acc.freight += item.product.freightCharges * item.quantity
+      return acc
+    },
+    { cost: 0, gst: 0, packing: 0, freight: 0 },
+  )
   const shipping = subtotal >= 5000 ? 0 : 500
   const grandTotal = subtotal + shipping
 
   const woodTypeLabel = {
-    en: { mahogany: "Mahogany", rosewood: "Rosewood" },
-    ta: { mahogany: "மஹோகனி", rosewood: "ரோஸ்வுட்" },
+    en: { aakeshya: "Aakeshya", mahogany: "Mahogany" },
+    ta: { aakeshya: "ஆகேஷ்யா", mahogany: "மஹோகனி" },
   }
 
   return (
     <div className="min-h-screen bg-background">
       <Header cartCount={getTotalItems()} language={language} onLanguageChange={setLanguage} />
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
@@ -123,7 +135,7 @@ export default function CartPage() {
             </Link>
           </div>
         ) : (
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
             {/* Cart Items */}
             <div className="lg:col-span-2 space-y-4">
               <div className="flex justify-between items-center">
@@ -135,11 +147,11 @@ export default function CartPage() {
               </div>
 
               {items.map((item) => (
-                <Card key={item.product.id}>
-                  <CardContent className="p-6">
-                    <div className="flex flex-col md:flex-row gap-6">
+                <Card key={item.product.id} className="shadow-sm hover:shadow-md transition-shadow">
+                  <CardContent className="p-4 sm:p-6">
+                    <div className="flex flex-col md:flex-row gap-4 sm:gap-6">
                       {/* Product Image */}
-                      <div className="w-full md:w-32 h-32 flex-shrink-0">
+                      <div className="w-full md:w-36 lg:w-40 h-36 lg:h-40 flex-shrink-0">
                         <img
                           src={item.product.images[0] || "/placeholder.svg"}
                           alt={language === "en" ? item.product.name : item.product.nameTA}
@@ -148,7 +160,7 @@ export default function CartPage() {
                       </div>
 
                       {/* Product Details */}
-                      <div className="flex-1 space-y-4">
+                      <div className="flex-1 space-y-3 sm:space-y-4">
                         <div>
                           <h3 className="text-lg font-semibold">
                             {language === "en" ? item.product.name : item.product.nameTA}
@@ -162,7 +174,7 @@ export default function CartPage() {
                           </div>
                         </div>
 
-                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
                           {/* Quantity Controls */}
                           <div className="flex items-center gap-3">
                             <span className="text-sm font-medium">{t.quantity}:</span>
@@ -195,6 +207,17 @@ export default function CartPage() {
                               <p className="text-lg font-semibold">
                                 {formatPrice(item.product.basePrice * item.quantity)}
                               </p>
+                              {/* Per-item price breakdown */}
+                              <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1 text-xs sm:text-sm text-muted-foreground bg-secondary/30 p-3 rounded-md">
+                                <span>{language === "en" ? "Item Cost" : "அடிப்படை"}</span>
+                                <span className="text-right text-foreground">{formatPrice(item.product.cost * item.quantity)}</span>
+                                <span>GST</span>
+                                <span className="text-right text-foreground">{formatPrice(item.product.gst * item.quantity)}</span>
+                                <span>{language === "en" ? "Packing" : "பேக்கிங்"}</span>
+                                <span className="text-right text-foreground">{formatPrice(item.product.packingCost * item.quantity)}</span>
+                                <span>{language === "en" ? "Freight" : "கப்பல்"}</span>
+                                <span className="text-right text-foreground">{formatPrice(item.product.freightCharges * item.quantity)}</span>
+                              </div>
                             </div>
                             <Button
                               variant="ghost"
@@ -219,11 +242,39 @@ export default function CartPage() {
 
             {/* Order Summary */}
             <div className="lg:col-span-1">
-              <Card className="sticky top-4">
-                <CardHeader>
-                  <CardTitle>{language === "en" ? "Order Summary" : "ஆர்டர் சுருக்கம்"}</CardTitle>
+              <Card className="sticky top-4 shadow-md">
+                <CardHeader className="p-4 sm:p-6 pb-0">
+                  <CardTitle className="text-lg sm:text-xl">{language === "en" ? "Order Summary" : "ஆர்டர் சுருக்கம்"}</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-4 p-4 sm:p-6">
+                  {/* Policy Notice */}
+                  <Alert className="bg-secondary/30 border-none">
+                    <AlertDescription className="text-sm">
+                      {language === "en"
+                        ? "100% payment required. Delivery time: 7 days. No cancellation."
+                        : "100% கட்டணம் அவசியம். டெலிவரி நேரம்: 7 நாட்கள். ரத்து செய்ய இயலாது."}
+                    </AlertDescription>
+                  </Alert>
+                  {/* Aggregated Price Breakdown */}
+                  <div className="space-y-2 text-sm bg-secondary/30 p-3 rounded-md">
+                    <div className="flex justify-between">
+                      <span>{language === "en" ? "Items Cost" : "அடிப்படை"}</span>
+                      <span>{formatPrice(totals.cost)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>GST</span>
+                      <span>{formatPrice(totals.gst)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>{language === "en" ? "Packing" : "பேக்கிங்"}</span>
+                      <span>{formatPrice(totals.packing)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>{language === "en" ? "Freight" : "கப்பல்"}</span>
+                      <span>{formatPrice(totals.freight)}</span>
+                    </div>
+                  </div>
+
                   <div className="flex justify-between">
                     <span>{t.subtotal}</span>
                     <span>{formatPrice(subtotal)}</span>

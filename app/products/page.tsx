@@ -12,7 +12,7 @@ import { Filter, SortAsc } from "lucide-react"
 
 export default function ProductsPage() {
   const [language, setLanguage] = useState<"en" | "ta">("en")
-  const [filter, setFilter] = useState<"all" | "mahogany" | "rosewood">("all")
+  const [filter, setFilter] = useState<"all" | "aakeshya" | "mahogany">("all")
   const [sortBy, setSortBy] = useState<"price-low" | "price-high" | "size">("price-low")
   const cartCount = useCart((state) => state.getTotalItems())
 
@@ -22,8 +22,8 @@ export default function ProductsPage() {
       subtitle: "Handcrafted wooden elephant statues in premium Mahogany and Rosewood",
       filters: "Filters",
       all: "All Products",
+      aakeshya: "Aakeshya",
       mahogany: "Mahogany",
-      rosewood: "Rosewood",
       sortBy: "Sort by",
       priceLow: "Price: Low to High",
       priceHigh: "Price: High to Low",
@@ -36,8 +36,8 @@ export default function ProductsPage() {
       subtitle: "பிரீமியம் மஹோகனி மற்றும் ரோஸ்வுட்டில் கைவினைப்பொருள் மர யானை சிலைகள்",
       filters: "வடிகட்டிகள்",
       all: "அனைத்து தயாரிப்புகள்",
+      aakeshya: "ஆகேஷ்யா",
       mahogany: "மஹோகனி",
-      rosewood: "ரோஸ்வுட்",
       sortBy: "வரிசைப்படுத்து",
       priceLow: "விலை: குறைவு முதல் அதிகம்",
       priceHigh: "விலை: அதிகம் முதல் குறைவு",
@@ -94,20 +94,20 @@ export default function ProductsPage() {
                 {t.all}
               </Button>
               <Button
+                variant={filter === "aakeshya" ? "default" : "outline"}
+                size="sm"
+                onClick={() => setFilter("aakeshya")}
+                className="text-xs sm:text-sm"
+              >
+                {t.aakeshya}
+              </Button>
+              <Button
                 variant={filter === "mahogany" ? "default" : "outline"}
                 size="sm"
                 onClick={() => setFilter("mahogany")}
                 className="text-xs sm:text-sm"
               >
                 {t.mahogany}
-              </Button>
-              <Button
-                variant={filter === "rosewood" ? "default" : "outline"}
-                size="sm"
-                onClick={() => setFilter("rosewood")}
-                className="text-xs sm:text-sm"
-              >
-                {t.rosewood}
               </Button>
             </div>
           </div>

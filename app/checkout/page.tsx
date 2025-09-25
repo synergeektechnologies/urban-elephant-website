@@ -11,6 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import { Alert, AlertDescription } from "@/components/ui/alert"
 import { useCart } from "@/lib/cart"
 import { ArrowLeft, CreditCard, User } from "lucide-react"
 import { toast } from "sonner"
@@ -119,6 +120,17 @@ export default function CheckoutPage() {
   }
 
   const subtotal = getTotalPrice()
+  // Aggregate price breakdown across cart
+  const totals = items.reduce(
+    (acc, item) => {
+      acc.cost += item.product.cost * item.quantity
+      acc.gst += item.product.gst * item.quantity
+      acc.packing += item.product.packingCost * item.quantity
+      acc.freight += item.product.freightCharges * item.quantity
+      return acc
+    },
+    { cost: 0, gst: 0, packing: 0, freight: 0 },
+  )
   const shipping = subtotal >= 5000 ? 0 : 500
   const total = subtotal + shipping
 
@@ -226,7 +238,7 @@ export default function CheckoutPage() {
           {/* Customer Details Form */}
           <div className="lg:col-span-2 space-y-6">
             {!showPayment ? (
-              <Card>
+              <Card className="shadow-sm hover:shadow-md transition-shadow">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <User className="w-5 h-5" />
@@ -317,7 +329,7 @@ export default function CheckoutPage() {
               </Card>
             ) : (
               /* Payment Section */
-              <Card>
+              <Card className="shadow-sm hover:shadow-md transition-shadow">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <CreditCard className="w-5 h-5" />
@@ -357,11 +369,19 @@ export default function CheckoutPage() {
 
           {/* Order Summary */}
           <div className="lg:col-span-1 order-first lg:order-last">
-            <Card className="sticky top-4">
-              <CardHeader className="p-4 sm:p-6">
+            <Card className="sticky top-4 shadow-md">
+              <CardHeader className="p-4 sm:p-6 pb-0">
                 <CardTitle className="text-lg sm:text-xl">{t.orderSummary}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4 p-4 sm:p-6">
+                {/* Policy Notice */}
+                <Alert className="bg-secondary/30 border-none">
+                  <AlertDescription className="text-sm">
+                    {language === "en"
+                      ? "100% payment required. Delivery time: 7 days. No cancellation."
+                      : "100% கட்டணம் அவசியம். டெலிவரி நேரம்: 7 நாட்கள். ரத்து செய்ய இயலாது."}
+                  </AlertDescription>
+                </Alert>
                 {/* Order Items */}
                 <div className="space-y-3">
                   {items.map((item) => (
@@ -378,6 +398,17 @@ export default function CheckoutPage() {
                         <p className="text-xs sm:text-sm text-muted-foreground">
                           {language === "en" ? "Qty:" : "அளவு:"} {item.quantity}
                         </p>
+                        {/* per-item breakdown */}
+                        <div className="mt-1 grid grid-cols-2 gap-x-3 gap-y-0.5 text-[11px] sm:text-xs text-muted-foreground bg-secondary/30 p-2 rounded">
+                          <span>{language === "en" ? "Item Cost" : "அடிப்படை"}</span>
+                          <span className="text-right text-foreground">{formatPrice(item.product.cost * item.quantity)}</span>
+                          <span>GST</span>
+                          <span className="text-right text-foreground">{formatPrice(item.product.gst * item.quantity)}</span>
+                          <span>{language === "en" ? "Packing" : "பேக்கிங்"}</span>
+                          <span className="text-right text-foreground">{formatPrice(item.product.packingCost * item.quantity)}</span>
+                          <span>{language === "en" ? "Freight" : "கப்பல்"}</span>
+                          <span className="text-right text-foreground">{formatPrice(item.product.freightCharges * item.quantity)}</span>
+                        </div>
                       </div>
                       <div className="text-sm sm:text-base font-medium flex-shrink-0">{formatPrice(item.product.basePrice * item.quantity)}</div>
                     </div>
@@ -388,6 +419,25 @@ export default function CheckoutPage() {
 
                 {/* Totals */}
                 <div className="space-y-3">
+                  {/* Aggregated breakdown */}
+                  <div className="space-y-2 text-sm bg-secondary/30 p-3 rounded-md">
+                    <div className="flex justify-between">
+                      <span>{language === "en" ? "Items Cost" : "அடிப்படை"}</span>
+                      <span>{formatPrice(totals.cost)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>GST</span>
+                      <span>{formatPrice(totals.gst)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>{language === "en" ? "Packing" : "பேக்கிங்"}</span>
+                      <span>{formatPrice(totals.packing)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>{language === "en" ? "Freight" : "கப்பல்"}</span>
+                      <span>{formatPrice(totals.freight)}</span>
+                    </div>
+                  </div>
                   <div className="flex justify-between text-sm sm:text-base">
                     <span>{t.subtotal}</span>
                     <span>{formatPrice(subtotal)}</span>

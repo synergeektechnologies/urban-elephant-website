@@ -38,12 +38,12 @@ export function ProductCard({ product, language = "en" }: ProductCardProps) {
 
   const woodTypeLabel = {
     en: {
+      aakeshya: "Aakeshya",
       mahogany: "Mahogany",
-      rosewood: "Rosewood",
     },
     ta: {
+      aakeshya: "ஆகேஷ்யா",
       mahogany: "மஹோகனி",
-      rosewood: "ரோஸ்வுட்",
     },
   }
 
