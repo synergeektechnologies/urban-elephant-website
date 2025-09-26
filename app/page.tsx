@@ -7,6 +7,7 @@ import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { ArrowRight, Sparkles } from "lucide-react"
+import Head from "next/head";
 
 export default function HomePage() {
   const [language, setLanguage] = useState<"en" | "ta">("en")
@@ -118,6 +119,44 @@ export default function HomePage() {
   const t = translations[language]
 
   return (
+    <>
+    <Head>
+      <title>The Urban Elephant | Handcrafted Wooden Elephant Statues</title>
+      <meta
+        name="description"
+        content="Discover the beauty and craftsmanship of our handcrafted wooden elephant statues. Perfect for home decor and gifts."
+      />
+      <meta
+        name="keywords"
+        content="Wooden Elephant Statues, Handcrafted Decor, Home Decor, Gifts, Spiritual Decor, Vastu Elephant, Prosperity Statue, Elephant Figurine, Artisan Craftsmanship"
+      />
+      <meta name="author" content="Synergeek Technologies" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="canonical" href="https://theurbanelephant.com" />
+      <meta name="robots" content="index, follow" />
+
+      <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+      {/* <link rel="icon" href="/favicon.ico" /> */}
+
+      {/* Open Graph (for Facebook, LinkedIn) */}
+      <meta property="og:title" content="The Urban Elephant | Handcrafted Wooden Elephant Statues" />
+      <meta
+        property="og:description"
+        content="Discover the beauty and craftsmanship of our handcrafted wooden elephant statues. Perfect for home decor and gifts."
+      />
+      <meta property="og:url" content="https://theurbanelephant.com" />
+      <meta property="og:type" content="website" />
+      <meta property="og:image" content="https://theurbanelephant.com/elegant-wooden-elephant-statue-mahogany-traditiona.jpg" />
+
+      {/* Twitter Card */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="The Urban Elephant | Handcrafted Wooden Elephant Statues" />
+      <meta
+        name="twitter:description"
+        content="Discover the beauty and craftsmanship of our handcrafted wooden elephant statues. Perfect for home decor and gifts."
+      />
+      <meta name="twitter:image" content="https://theurbanelephant.com/elegant-wooden-elephant-statue-mahogany-traditiona.jpg" />
+    </Head>
     <div className="min-h-screen bg-background">
       <Header language={language} onLanguageChange={setLanguage} />
 
@@ -229,5 +268,6 @@ export default function HomePage() {
 
       <Footer language={language} />
     </div>
+    </>
   )
 }

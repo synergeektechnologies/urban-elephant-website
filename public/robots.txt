@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://theurbanelephant.com/sitemap.xml
