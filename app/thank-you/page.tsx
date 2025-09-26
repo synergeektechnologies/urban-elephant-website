@@ -41,13 +41,13 @@ export default function ThankYouPage() {
         },
         {
           title: "Shipping & Delivery",
-          description: "Your order will be shipped within 3-5 business days with tracking information.",
+          description: "Your order will be shipped within 7 business days with tracking information.",
         },
       ],
       contact: "Need Help?",
       contactDesc: "If you have any questions about your order, feel free to contact us:",
-      email: "Email: support@theurbanelephant.com",
-      phone: "Phone: +91 98765 43210",
+      email: "Email: mvsv2367@gmail.com",
+      phone: "Phone: +91 93811 34997",
       continueShopping: "Continue Shopping",
       backHome: "Back to Home",
       thankYouNote:
@@ -70,13 +70,13 @@ export default function ThankYouPage() {
         },
         {
           title: "ஷிப்பிங் மற்றும் டெலிவரி",
-          description: "உங்கள் ஆர்டர் 3-5 வணிக நாட்களுக்குள் ட்ராக்கிங் தகவலுடன் அனுப்பப்படும்.",
+          description: "உங்கள் ஆர்டர் 7 வணிக நாட்களுக்குள் ட்ராக்கிங் தகவலுடன் அனுப்பப்படும்.",
         },
       ],
       contact: "உதவி தேவையா?",
       contactDesc: "உங்கள் ஆர்டர் பற்றி ஏதேனும் கேள்விகள் இருந்தால், எங்களை தொடர்பு கொள்ள தயங்க வேண்டாம்:",
-      email: "மின்னஞ்சல்: support@theurbanelephant.com",
-      phone: "தொலைபேசி: +91 98765 43210",
+      email: "மின்னஞ்சல்: mvsv2367@gmail.com",
+      phone: "தொலைபேசி: +91 93811 34997",
       continueShopping: "ஷாப்பிங் தொடரவும்",
       backHome: "முகப்புக்கு திரும்பு",
       thankYouNote:
@@ -99,14 +99,6 @@ export default function ThankYouPage() {
             </div>
             <h1 className="text-4xl lg:text-5xl font-serif font-bold mb-4 text-balance">{t.title}</h1>
             <p className="text-xl text-muted-foreground mb-6">{t.subtitle}</p>
-
-            {/* Order Number */}
-            <Card className="inline-block">
-              <CardContent className="p-4">
-                <p className="text-sm text-muted-foreground">{t.orderNumber}</p>
-                <p className="text-lg font-mono font-semibold">{orderNumber}</p>
-              </CardContent>
-            </Card>
           </div>
 
           {/* Main Message */}

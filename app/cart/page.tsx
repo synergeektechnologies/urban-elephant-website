@@ -280,21 +280,6 @@ export default function CartPage() {
                     <span>{formatPrice(subtotal)}</span>
                   </div>
 
-                  <div className="flex justify-between">
-                    <span>{t.shipping}</span>
-                    <span className={shipping === 0 ? "text-green-600" : ""}>
-                      {shipping === 0 ? t.freeShipping : formatPrice(shipping)}
-                    </span>
-                  </div>
-
-                  {subtotal < 5000 && (
-                    <p className="text-sm text-muted-foreground">
-                      {language === "en"
-                        ? `Add ${formatPrice(5000 - subtotal)} more for free shipping`
-                        : `இலவச ஷிப்பிங்கிற்கு ${formatPrice(5000 - subtotal)} மேலும் சேர்க்கவும்`}
-                    </p>
-                  )}
-
                   <hr />
 
                   <div className="flex justify-between text-lg font-semibold">

@@ -13,6 +13,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { useCart } from "@/lib/cart"
+import { sendOrderNotification, type OrderData } from "@/lib/emailjs"
 import { ArrowLeft, CreditCard, User } from "lucide-react"
 import { toast } from "sonner"
 
@@ -183,9 +184,47 @@ export default function CheckoutPage() {
       // Show success message
       toast.success(
         language === "en" 
-          ? "Payment completed successfully! Redirecting..." 
-          : "பேமெண்ட் வெற்றிகரமாக முடிந்தது! திருப்பி அனுப்புகிறது..."
+          ? "Payment completed successfully! Sending order details..." 
+          : "பேமெண்ட் வெற்றிகரமாக முடிந்தது! ஆர்டர் விவரங்களை அனுப்புகிறது..."
       )
+
+      // Prepare order data for email
+      const orderData: OrderData = {
+        orders: items.map(item => ({
+          name: language === "en" ? item.product.name : item.product.nameTA,
+          units: item.quantity,
+          price: item.product.basePrice * item.quantity,
+          image: item.product.images[0] || "/placeholder.svg"
+        })),
+        gst: totals.gst,
+        packing: totals.packing,
+        freight: totals.freight,
+        total: total,
+        customer_name: customerDetails.name,
+        email: customerDetails.email,
+        address: customerDetails.address,
+        city: customerDetails.city,
+        state: customerDetails.state,
+        pincode: customerDetails.pincode,
+        phone: customerDetails.phone,
+      }
+
+      // Send order notification email
+      const emailSent = await sendOrderNotification(orderData)
+      
+      if (emailSent) {
+        toast.success(
+          language === "en" 
+            ? "Order details sent successfully! Redirecting..." 
+            : "ஆர்டர் விவரங்கள் வெற்றிகரமாக அனுப்பப்பட்டது! திருப்பி அனுப்புகிறது..."
+        )
+      } else {
+        toast.warning(
+          language === "en" 
+            ? "Order processed but email notification failed. Please contact support." 
+            : "ஆர்டர் செயலாக்கப்பட்டது ஆனால் மின்னஞ்சல் அறிவிப்பு தோல்வியடைந்தது. ஆதரவைத் தொடர்பு கொள்ளவும்."
+        )
+      }
 
       // Simulate payment processing
       await new Promise((resolve) => setTimeout(resolve, 2000))
@@ -441,12 +480,6 @@ export default function CheckoutPage() {
                   <div className="flex justify-between text-sm sm:text-base">
                     <span>{t.subtotal}</span>
                     <span>{formatPrice(subtotal)}</span>
-                  </div>
-                  <div className="flex justify-between text-sm sm:text-base">
-                    <span>{t.shipping}</span>
-                    <span className={shipping === 0 ? "text-green-600" : ""}>
-                      {shipping === 0 ? t.freeShipping : formatPrice(shipping)}
-                    </span>
                   </div>
                   <hr />
                   <div className="flex justify-between text-lg sm:text-xl font-semibold">
