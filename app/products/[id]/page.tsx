@@ -110,8 +110,8 @@ export default function ProductDetailPage() {
   const t = translations[language]
 
   const woodTypeLabel = {
-    en: { aakeshya: "Aakeshya", mahogany: "Mahogany" },
-    ta: { aakeshya: "ஆகேஷ்யா", mahogany: "மஹோகனி" },
+    en: { acacia: "Acacia", mahogany: "Mahogany" },
+    ta: { acacia: "அகாசியா", mahogany: "மஹோகனி" },
   }
 
   return (

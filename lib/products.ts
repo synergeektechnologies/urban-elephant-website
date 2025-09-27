@@ -4,7 +4,7 @@ export interface Product {
   nameTA: string
   description: string
   descriptionTA: string
-  woodType: "aakeshya" | "mahogany"
+  woodType: "acacia" | "mahogany"
   sizeInFeet: number
   weightInKg: number
   // basePrice remains the primary price used across the app. We'll set this to Total
@@ -19,16 +19,16 @@ export interface Product {
 }
 
 export const products: Product[] = [
-  // Aakeshya wood
+  // Acacia wood
   {
-    id: "elephant-1-5ft-aakeshya",
-    name: "Elephant - 1.5 ft (Aakeshya)",
-    nameTA: "யானை - 1.5 அடி (ஆகேஷ்யா)",
+    id: "elephant-1-5ft-acacia",
+    name: "Elephant - 1.5 ft (Acacia)",
+    nameTA: "யானை - 1.5 அடி (அகாசியா)",
     description:
-      "Handcrafted wooden elephant statue made from Aakeshya wood. Balanced size suitable for homes and offices.",
+      "Handcrafted wooden elephant statue made from Acacia wood. Balanced size suitable for homes and offices.",
     descriptionTA:
-      "ஆகேஷ்யா மரத்தில் செய்யப்பட்ட கைவினை யானை சிலை. வீடும் அலுவலகமும் பொருந்தும் அளவு.",
-    woodType: "aakeshya",
+      "அகாசியா மரத்தில் செய்யப்பட்ட கைவினை யானை சிலை. வீடும் அலுவலகமும் பொருந்தும் அளவு.",
+    woodType: "acacia",
     sizeInFeet: 1.5,
     weightInKg: 25,
     cost: 13000,
@@ -40,14 +40,14 @@ export const products: Product[] = [
     inStock: true,
   },
   {
-    id: "elephant-2ft-aakeshya",
-    name: "Elephant - 2 ft (Aakeshya)",
-    nameTA: "யானை - 2 அடி (ஆகேஷ்யா)",
+    id: "elephant-2ft-acacia",
+    name: "Elephant - 2 ft (Acacia)",
+    nameTA: "யானை - 2 அடி (அகாசியா)",
     description:
-      "Aakeshya wood elephant statue with detailed craftsmanship. Ideal medium display size.",
+      "Acacia wood elephant statue with detailed craftsmanship. Ideal medium display size.",
     descriptionTA:
-      "விவரமான செதுக்கலுடன் ஆகேஷ்யா மர யானை சிலை. நடுத்தர காட்சிக்குப் பொருத்தம்.",
-    woodType: "aakeshya",
+      "விவரமான செதுக்கலுடன் அகாசியா மர யானை சிலை. நடுத்தர காட்சிக்குப் பொருத்தம்.",
+    woodType: "acacia",
     sizeInFeet: 2,
     weightInKg: 50,
     cost: 26000,
@@ -59,14 +59,14 @@ export const products: Product[] = [
     inStock: true,
   },
   {
-    id: "elephant-2-5ft-aakeshya",
-    name: "Elephant - 2.5 ft (Aakeshya)",
-    nameTA: "யானை - 2.5 அடி (ஆகேஷ்யா)",
+    id: "elephant-2-5ft-acacia",
+    name: "Elephant - 2.5 ft (Acacia)",
+    nameTA: "யானை - 2.5 அடி (அகாசியா)",
     description:
-      "Large Aakeshya wood elephant statue with traditional motifs and natural finish.",
+      "Large Acacia wood elephant statue with traditional motifs and natural finish.",
     descriptionTA:
-      "பாரம்பரிய வடிவங்களுடன் இயற்கை பூச்சு கொண்ட பெரிய ஆகேஷ்யா மர யானை சிலை.",
-    woodType: "aakeshya",
+      "பாரம்பரிய வடிவங்களுடன் இயற்கை பூச்சு கொண்ட பெரிய அகாசியா மர யானை சிலை.",
+    woodType: "acacia",
     sizeInFeet: 2.5,
     weightInKg: 100,
     cost: 54600,
@@ -78,14 +78,14 @@ export const products: Product[] = [
     inStock: true,
   },
   {
-    id: "elephant-3ft-aakeshya",
-    name: "Elephant - 3 ft (Aakeshya)",
-    nameTA: "யானை - 3 அடி (ஆகேஷ்யா)",
+    id: "elephant-3ft-acacia",
+    name: "Elephant - 3 ft (Acacia)",
+    nameTA: "யானை - 3 அடி (அகாசியா)",
     description:
-      "Majestic 3 ft Aakeshya wood elephant statue, ideal for grand interiors and halls.",
+      "Majestic 3 ft Acacia wood elephant statue, ideal for grand interiors and halls.",
     descriptionTA:
-      "கம்பீரமான 3 அடி ஆகேஷ்யா மர யானை சிலை, பெரிய உள்ளகங்களுக்கு ஏற்றது.",
-    woodType: "aakeshya",
+      "கம்பீரமான 3 அடி அகாசியா மர யானை சிலை, பெரிய உள்ளகங்களுக்கு ஏற்றது.",
+    woodType: "acacia",
     sizeInFeet: 3,
     weightInKg: 180,
     cost: 110500,
@@ -179,6 +179,6 @@ export function getProductById(id: string): Product | undefined {
   return products.find((product) => product.id === id)
 }
 
-export function getProductsByWoodType(woodType: "aakeshya" | "mahogany"): Product[] {
+export function getProductsByWoodType(woodType: "acacia" | "mahogany"): Product[] {
   return products.filter((product) => product.woodType === woodType)
 }

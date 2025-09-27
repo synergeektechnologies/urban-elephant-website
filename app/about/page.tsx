@@ -48,6 +48,26 @@ export default function AboutPage() {
           "Elephants mourn their dead and have been observed holding 'funerals'",
         ],
       },
+      names: {
+        title: "The 60 Names of Elephants",
+        intro: "Not one or two — altogether, there are 60 names. All of them are pure Tamil names.",
+        maleTitle: "Names of the Male Elephant",
+        femaleTitle: "Names of the Female Elephant",
+        male: [
+          "Yaanai (black one)", "Vezham (white elephant)", "Kaliru", "Kalabam", "Maathangam", "Kaimma (animal with tusks)",
+          "Umbar", "Umbal (lofty one)", "Anjanaavathi", "Arasuvaa", "Alliyan", "Arupadai", "Aambal", "Aanai", "Ipham",
+          "Irathi", "Kunjchram", "Irul", "Thumbu", "Valvilangu", "Thoongal", "Thol", "Karaiyadi (one with pestle-like legs)",
+          "Erumbi", "Perumaa (big animal)", "Vaaranam (one with conch-like head)", "Pootkai (one with hollow trunk)",
+          "Oruthal", "Ongal (mountain-like)", "Naaga", "Pongadi (one with big feet)", "Kumbi", "Thumbi",
+          "Naalvaai (one with a dangling mouth)", "Kunjchram (gathered/assembled one)", "Kareṇu", "Uvaa (collected one)",
+          "Kari (black one)", "Kalvan (dark one)", "Kayam", "Chinduram", "Vayamaa", "Pugarmugam (one with marks on its face)",
+          "Thandhi", "Madaavalam", "Thandaavalam", "Kaimmalai (mountain-like with trunk)", "Vazhuwai (rounded, compact one)",
+          "Mandhamaa", "Marunmaa", "Mathagayam", "Bodhagam", "Viramali", "Madhoṛkadham (another name of Mathagayam)",
+          "Kadagam (a herd or group of elephants)"
+        ],
+        female: ["Pidi", "Athavai", "Vadavai", "Kariṇi", "Aththini"],
+        footer: "Together, these make a total of 60 names for the elephant."
+      }
     },
     ta: {
       title: "யானைகள் பற்றி",
@@ -87,7 +107,26 @@ export default function AboutPage() {
           "யானைகள் தங்கள் இறந்தவர்களுக்காக துக்கம் அனுஷ்டிக்கின்றன மற்றும் 'இறுதிச் சடங்குகள்' நடத்துவது கவனிக்கப்பட்டுள்ளது",
         ],
       },
-    },
+      names: {
+        title: "யானையின் 60 தமிழ்ப் பெயர்கள்",
+        intro: "ஒன்று, இரண்டல்ல — மொத்தம் 60 பெயர்கள் உள்ளன. இவை எல்லாமே தூய தமிழ்ப் பெயர்கள்.",
+        maleTitle: "ஆண் யானையின் பெயர்கள்",
+        femaleTitle: "பெண் யானையின் பெயர்கள்",
+        male: [
+          "யானை (கரியது)", "வேழம் (வெள்ளை யானை)", "களிறு", "களபம்", "மாதங்கம்", "கைம்மா (துதிக்கையுடைய விலங்கு)",
+          "உம்பர்", "உம்பல் (உயர்ந்தது)", "அஞ்சனாவதி", "அரசுவா", "அல்லியன்", "அறுபடை", "ஆம்பல்", "ஆனை", "இபம்",
+          "இரதி", "குஞ்சரம்", "இருள்", "தும்பு", "வல்விலங்கு", "தூங்கல்", "தோல்", "கறையடி (உரல் போன்ற பாதத்தை உடையது)",
+          "எறும்பி", "பெருமா (பெரிய விலங்கு)", "வாரணம் (சங்கு போன்ற தலையை உடையது)", "பூட்கை (துளையுள்ள கையை உடையது)",
+          "ஒருத்தல்", "ஓங்கல் (மலைபோன்றது)", "நாக", "பொங்கடி (பெரிய பாதத்தை உடையது)", "கும்பி", "தும்பி",
+          "நால்வாய் (தொங்குகின்ற வாயை உடையது)", "குஞ்சரம் (திரண்டது)", "கரேணு", "உவா (திரண்டது)", "கரி (கரியது)",
+          "கள்வன் (கரியது)", "கயம்", "சிந்துரம்", "வயமா", "புகர்முகம் (முகத்தில் புள்ளியுள்ளது)", "தந்தி",
+          "மதாவளம்", "தந்தாவளம்", "கைம்மலை (கையை உடைய மலை போன்றது)", "வழுவை (உருண்டு திரண்டது)", "மந்தமா",
+          "மருண்மா", "மதகயம்", "போதகம்", "விரமலி", "மதோற்கடம் (மதகயத்தின் பெயர்)", "கடகம் (யானைத்திரளின் பெயர்)"
+        ],
+        female: ["பிடி", "அதவை", "வடவை", "கரிணி", "அத்தினி"],
+        footer: "இவை இரண்டும் சேர்த்து மொத்தம் 60 பெயர்கள்."
+      }
+    }
   }
 
   const t = translations[language]
@@ -126,7 +165,7 @@ export default function AboutPage() {
           </div>
 
           {/* Facts Section */}
-          <Card>
+          <Card className="mb-12">
             <CardContent className="p-8">
               <h2 className="text-2xl font-semibold mb-6">{t.facts.title}</h2>
               <div className="grid md:grid-cols-2 gap-4">
@@ -139,6 +178,30 @@ export default function AboutPage() {
                   </div>
                 ))}
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Elephant Names Section */}
+          <Card>
+            <CardContent className="p-8">
+              <h2 className="text-2xl font-semibold mb-4">{t.names.title}</h2>
+              <p className="mb-6 text-muted-foreground">{t.names.intro}</p>
+
+              <h3 className="text-xl font-semibold mb-3">{t.names.maleTitle}</h3>
+              <ul className="list-disc list-inside space-y-1 mb-6">
+                {t.names.male.map((name, index) => (
+                  <li key={index}>{name}</li>
+                ))}
+              </ul>
+
+              <h3 className="text-xl font-semibold mb-3">{t.names.femaleTitle}</h3>
+              <ul className="list-disc list-inside space-y-1 mb-6">
+                {t.names.female.map((name, index) => (
+                  <li key={index}>{name}</li>
+                ))}
+              </ul>
+
+              <p className="text-muted-foreground">{t.names.footer}</p>
             </CardContent>
           </Card>
         </div>
