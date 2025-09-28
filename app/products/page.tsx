@@ -12,7 +12,7 @@ import { Filter, SortAsc } from "lucide-react"
 
 export default function ProductsPage() {
   const [language, setLanguage] = useState<"en" | "ta">("en")
-  const [filter, setFilter] = useState<"all" | "aakeshya" | "mahogany">("all")
+  const [filter, setFilter] = useState<"all" | "acacia" | "mahogany">("all")
   const [sortBy, setSortBy] = useState<"price-low" | "price-high" | "size">("price-low")
   const cartCount = useCart((state) => state.getTotalItems())
 
@@ -22,7 +22,7 @@ export default function ProductsPage() {
       subtitle: "Handcrafted wooden elephant statues in premium Mahogany and Rosewood",
       filters: "Filters",
       all: "All Products",
-      aakeshya: "Aakeshya",
+      acacia: "Acacia",
       mahogany: "Mahogany",
       sortBy: "Sort by",
       priceLow: "Price: Low to High",
@@ -36,7 +36,7 @@ export default function ProductsPage() {
       subtitle: "பிரீமியம் மஹோகனி மற்றும் ரோஸ்வுட்டில் கைவினைப்பொருள் மர யானை சிலைகள்",
       filters: "வடிகட்டிகள்",
       all: "அனைத்து தயாரிப்புகள்",
-      aakeshya: "ஆகேஷ்யா",
+      acacia: "அகாசியா",
       mahogany: "மஹோகனி",
       sortBy: "வரிசைப்படுத்து",
       priceLow: "விலை: குறைவு முதல் அதிகம்",
@@ -94,12 +94,12 @@ export default function ProductsPage() {
                 {t.all}
               </Button>
               <Button
-                variant={filter === "aakeshya" ? "default" : "outline"}
+                variant={filter === "acacia" ? "default" : "outline"}
                 size="sm"
-                onClick={() => setFilter("aakeshya")}
+                onClick={() => setFilter("acacia")}
                 className="text-xs sm:text-sm"
               >
-                {t.aakeshya}
+                {t.acacia}
               </Button>
               <Button
                 variant={filter === "mahogany" ? "default" : "outline"}
