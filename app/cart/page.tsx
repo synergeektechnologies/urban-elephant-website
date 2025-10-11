@@ -1,6 +1,5 @@
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -11,9 +10,10 @@ import { Badge } from "@/components/ui/badge"
 import { useCart } from "@/lib/cart"
 import { ArrowLeft, Minus, Plus, Trash2, ShoppingBag } from "lucide-react"
 import { toast } from "sonner"
+import { useLanguage } from "@/contexts/language-context"
 
 export default function CartPage() {
-  const [language, setLanguage] = useState<"en" | "ta">("en")
+  const { language } = useLanguage()
   const { items, updateQuantity, removeItem, getTotalPrice, getTotalItems, clearCart } = useCart()
 
   const translations = {
@@ -105,7 +105,7 @@ export default function CartPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header cartCount={getTotalItems()} language={language} onLanguageChange={setLanguage} />
+      <Header cartCount={getTotalItems()} />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {/* Header */}
@@ -305,7 +305,7 @@ export default function CartPage() {
         )}
       </div>
 
-      <Footer language={language} />
+      <Footer />
     </div>
   )
 }

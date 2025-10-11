@@ -1,13 +1,13 @@
 "use client"
 
-import { useState } from "react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { useLanguage } from "@/contexts/language-context"
 
 export default function AboutPage() {
-  const [language, setLanguage] = useState<"en" | "ta">("en")
+  const { language } = useLanguage()
 
   const translations = {
     en: {
@@ -133,7 +133,7 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header language={language} onLanguageChange={setLanguage} />
+      <Header />
 
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
@@ -207,7 +207,7 @@ export default function AboutPage() {
         </div>
       </div>
 
-      <Footer language={language} />
+      <Footer />
     </div>
   )
 }

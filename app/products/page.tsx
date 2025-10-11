@@ -9,9 +9,10 @@ import { Badge } from "@/components/ui/badge"
 import { products } from "@/lib/products"
 import { useCart } from "@/lib/cart"
 import { Filter, SortAsc } from "lucide-react"
+import { useLanguage } from "@/contexts/language-context"
 
 export default function ProductsPage() {
-  const [language, setLanguage] = useState<"en" | "ta">("en")
+  const { language } = useLanguage()
   const [filter, setFilter] = useState<"all" | "acacia" | "mahogany">("all")
   const [sortBy, setSortBy] = useState<"price-low" | "price-high" | "size">("price-low")
   const cartCount = useCart((state) => state.getTotalItems())
@@ -71,7 +72,7 @@ export default function ProductsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header cartCount={cartCount} language={language} onLanguageChange={setLanguage} />
+      <Header cartCount={cartCount} />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {/* Header */}
@@ -136,7 +137,7 @@ export default function ProductsPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {sortedProducts.map((product) => (
-            <ProductCard key={product.id} product={product} language={language} />
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
 
@@ -152,7 +153,7 @@ export default function ProductsPage() {
         )}
       </div>
 
-      <Footer language={language} />
+      <Footer />
     </div>
   )
 }

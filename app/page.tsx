@@ -1,16 +1,16 @@
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { ArrowRight, Sparkles } from "lucide-react"
-import Head from "next/head";
+import Head from "next/head"
+import { useLanguage } from "@/contexts/language-context"
 
 export default function HomePage() {
-  const [language, setLanguage] = useState<"en" | "ta">("en")
+  const { language } = useLanguage()
 
   const translations = {
     en: {
@@ -158,7 +158,7 @@ export default function HomePage() {
       <meta name="twitter:image" content="https://theurbanelephant.com/elegant-wooden-elephant-statue-mahogany-traditiona.jpg" />
     </Head>
     <div className="min-h-screen bg-background">
-      <Header language={language} onLanguageChange={setLanguage} />
+      <Header />
 
       {/* Hero Section */}
       <section className="relative py-12 sm:py-16 lg:py-20 px-4 sm:px-6">
@@ -266,7 +266,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <Footer language={language} />
+      <Footer />
     </div>
     </>
   )

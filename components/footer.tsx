@@ -2,12 +2,12 @@
 
 import Link from "next/link"
 import { Mail, Phone, MapPin, Facebook, Instagram, Twitter } from "lucide-react"
+import { useLanguage } from "@/contexts/language-context"
 
-interface FooterProps {
-  language?: "en" | "ta"
-}
+interface FooterProps {}
 
-export function Footer({ language = "en" }: FooterProps) {
+export function Footer({}: FooterProps) {
+  const { language } = useLanguage()
   const translations = {
     en: {
       company: "The Urban Elephant",

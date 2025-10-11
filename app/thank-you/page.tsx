@@ -7,9 +7,10 @@ import { Header } from "@/components/header"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { CheckCircle, Home, ShoppingBag, Mail, Phone } from "lucide-react"
+import { useLanguage } from "@/contexts/language-context"
 
 export default function ThankYouPage() {
-  const [language, setLanguage] = useState<"en" | "ta">("en")
+  const { language } = useLanguage()
   const [orderNumber] = useState(() => `ORD-${Date.now().toString().slice(-8)}`)
   const router = useRouter()
 
@@ -88,7 +89,7 @@ export default function ThankYouPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header language={language} onLanguageChange={setLanguage} />
+      <Header />
 
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">

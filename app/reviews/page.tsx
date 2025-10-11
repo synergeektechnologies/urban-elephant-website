@@ -13,6 +13,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import { Star, MessageSquare, User, Calendar } from "lucide-react"
 import { toast } from "sonner"
+import { useLanguage } from "@/contexts/language-context"
 
 interface Review {
   id: string
@@ -26,7 +27,7 @@ interface Review {
 }
 
 export default function ReviewsPage() {
-  const [language, setLanguage] = useState<"en" | "ta">("en")
+  const { language } = useLanguage()
   const [showForm, setShowForm] = useState(false)
   const [reviews, setReviews] = useState<Review[]>([])
   const [loading, setLoading] = useState(true)
@@ -186,7 +187,7 @@ export default function ReviewsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header language={language} onLanguageChange={setLanguage} />
+      <Header />
 
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
@@ -374,7 +375,7 @@ export default function ReviewsPage() {
         </div>
       </div>
 
-      <Footer language={language} />
+      <Footer />
     </div>
   )
 }

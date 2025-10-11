@@ -4,14 +4,14 @@ import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ShoppingCart, Menu, X, Globe } from "lucide-react"
+import { useLanguage } from "@/contexts/language-context"
 
 interface HeaderProps {
   cartCount?: number
-  language?: "en" | "ta"
-  onLanguageChange?: (lang: "en" | "ta") => void
 }
 
-export function Header({ cartCount = 0, language = "en", onLanguageChange }: HeaderProps) {
+export function Header({ cartCount = 0 }: HeaderProps) {
+  const { language, setLanguage } = useLanguage()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const translations = {
@@ -61,7 +61,7 @@ export function Header({ cartCount = 0, language = "en", onLanguageChange }: Hea
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => onLanguageChange?.(language === "en" ? "ta" : "en")}
+            onClick={() => setLanguage(language === "en" ? "ta" : "en")}
             className="hidden md:flex items-center space-x-1"
           >
             <Globe className="h-4 w-4" />
@@ -106,7 +106,7 @@ export function Header({ cartCount = 0, language = "en", onLanguageChange }: Hea
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => onLanguageChange?.(language === "en" ? "ta" : "en")}
+              onClick={() => setLanguage(language === "en" ? "ta" : "en")}
               className="flex items-center space-x-1"
             >
               <Globe className="h-4 w-4" />

@@ -12,10 +12,11 @@ import { useCart } from "@/lib/cart"
 import { ArrowLeft, ShoppingCart, Truck, Shield, Award } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
+import { useLanguage } from "@/contexts/language-context"
 
 export default function ProductDetailPage() {
   const params = useParams()
-  const [language, setLanguage] = useState<"en" | "ta">("en")
+  const { language } = useLanguage()
   const [quantity, setQuantity] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
 
@@ -26,7 +27,7 @@ export default function ProductDetailPage() {
   if (!product) {
     return (
       <div className="min-h-screen bg-background">
-        <Header cartCount={cartCount} language={language} onLanguageChange={setLanguage} />
+        <Header cartCount={cartCount} />
         <div className="container mx-auto px-4 py-8">
           <div className="text-center">
             <h1 className="text-2xl font-bold mb-4">
@@ -116,7 +117,7 @@ export default function ProductDetailPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header cartCount={cartCount} language={language} onLanguageChange={setLanguage} />
+      <Header cartCount={cartCount} />
 
       <div className="container mx-auto px-4 py-8">
         {/* Back button */}

@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { QRCode } from "@/components/qr-code"
+// import { QRCode } from "@/components/qr-code" // Replaced with placeholder image
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -16,6 +16,7 @@ import { useCart } from "@/lib/cart"
 import { sendOrderNotification, type OrderData } from "@/lib/emailjs"
 import { ArrowLeft, CreditCard, User } from "lucide-react"
 import { toast } from "sonner"
+import { useLanguage } from "@/contexts/language-context"
 
 interface CustomerDetails {
   name: string
@@ -28,7 +29,7 @@ interface CustomerDetails {
 }
 
 export default function CheckoutPage() {
-  const [language, setLanguage] = useState<"en" | "ta">("en")
+  const { language } = useLanguage()
   const [customerDetails, setCustomerDetails] = useState<CustomerDetails>({
     name: "",
     email: "",
@@ -259,7 +260,7 @@ export default function CheckoutPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header cartCount={getTotalItems()} language={language} onLanguageChange={setLanguage} />
+      <Header cartCount={getTotalItems()} />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
         {/* Header */}
@@ -380,7 +381,11 @@ export default function CheckoutPage() {
                     <h3 className="text-lg sm:text-xl font-semibold">{t.scanQR}</h3>
                     <div className="flex justify-center">
                       <div className="w-48 h-48 sm:w-60 sm:h-60">
-                        <QRCode value={paymentData} size={200} className="w-full h-full" />
+                        <img 
+                          src="/qrcode.jpeg" 
+                          alt="Payment QR Code Placeholder" 
+                          className="w-full h-full object-cover border border-border rounded bg-gray-100 flex items-center justify-center"
+                        />
                       </div>
                     </div>
                     <p className="text-sm text-muted-foreground max-w-md mx-auto text-pretty px-2">
@@ -499,7 +504,7 @@ export default function CheckoutPage() {
         </div>
       </div>
 
-      <Footer language={language} />
+      <Footer />
     </div>
   )
 }

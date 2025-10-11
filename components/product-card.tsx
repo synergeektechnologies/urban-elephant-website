@@ -9,13 +9,14 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ShoppingCart, Eye } from "lucide-react"
 import { toast } from "sonner"
+import { useLanguage } from "@/contexts/language-context"
 
 interface ProductCardProps {
   product: Product
-  language?: "en" | "ta"
 }
 
-export function ProductCard({ product, language = "en" }: ProductCardProps) {
+export function ProductCard({ product }: ProductCardProps) {
+  const { language } = useLanguage()
   const [isLoading, setIsLoading] = useState(false)
   const addItem = useCart((state) => state.addItem)
 
