@@ -146,7 +146,7 @@ export default function HomePage() {
       />
       <meta property="og:url" content="https://theurbanelephant.com" />
       <meta property="og:type" content="website" />
-      <meta property="og:image" content="https://theurbanelephant.com/elegant-wooden-elephant-statue-mahogany-traditiona.jpg" />
+      <meta property="og:image" content="https://theurbanelephant.com/2.5 Feet 100 kg.jpg" />
 
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -155,7 +155,7 @@ export default function HomePage() {
         name="twitter:description"
         content="Discover the beauty and craftsmanship of our handcrafted wooden elephant statues. Perfect for home decor and gifts."
       />
-      <meta name="twitter:image" content="https://theurbanelephant.com/elegant-wooden-elephant-statue-mahogany-traditiona.jpg" />
+      <meta name="twitter:image" content="https://theurbanelephant.com/2.5 Feet 100 kg.jpg" />
     </Head>
     <div className="min-h-screen bg-background">
       <Header />
@@ -183,7 +183,7 @@ export default function HomePage() {
             </div>
             <div className="relative order-first lg:order-last">
               <img
-                src="/elegant-wooden-elephant-statue-mahogany-traditiona.jpg"
+                src="/2.5 Feet 100 kg.jpg"
                 alt="Handcrafted wooden elephant statue"
                 className="w-full h-auto rounded-lg shadow-2xl"
               />

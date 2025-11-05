@@ -12,7 +12,7 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>("ta") // Default to Tamil
+  const [language, setLanguageState] = useState<Language>("en") // Default to English
   const [isLoaded, setIsLoaded] = useState(false)
 
   // Load language from localStorage on mount
